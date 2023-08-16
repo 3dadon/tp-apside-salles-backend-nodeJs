@@ -24,8 +24,13 @@ class RoomService implements ICrudInterface{
     }
 
 
-    async delete(any: any) {
-      throw new Error("Method not implemented.");
+    async delete(roomId: number) {
+      try {
+        return await roomDao.delete(roomId);
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to delete Room with id : "+roomId);
+      }  
     }
 
     async findAll(): Promise<Room[]> {

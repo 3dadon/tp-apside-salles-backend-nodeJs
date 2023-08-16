@@ -60,7 +60,7 @@ export class RoomController {
       const result = await roomService.update(room);
 
       if(result===1) {
-        res.status(200).send({"message":"update de la salle "+room.id+"OK"});
+        res.status(200).send({"message":"update de la salle "+room.id+" OK"});
       } else {
         res.status(404).send({"errorMessage":"Impossible d\'updater la salle d\'id "+room.id});
       }
@@ -69,5 +69,20 @@ export class RoomController {
       res.status(500).send({"errorMessage":"Failed to update Room with id : "+req.params.id});
       throw new Error("Failed to update Room with id : "+req.params.id);
     }   
+  }
+
+  async delete(req: Request, res: Response) {
+    try {
+      const roomId = parseInt(req.params.id);
+      const result = await roomService.delete(roomId);
+
+      if(result && result > 0) {
+        res.status(200).send({"message":"delete de la salle "+roomId+" OK"});
+      } else {
+        res.status(404).send({"errorMessage":"Impossible de supprimer la salle d\'id "+roomId});
+      }
+    } catch(err) {
+      console.log('Erreur lors de la suppression de la salle d\'id '+req.params.id);
+    }
   }
 }

@@ -23,8 +23,13 @@ class RoomDao implements ICrudInterface {
       }   
     }
 
-    async delete(any: any) {
-      throw new Error("Method not implemented.");
+    async delete(roomId: number) {
+      try {
+        return await Room.destroy({where: {id:roomId}});
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to delete Room with id : "+roomId);
+      }  
     }
 
     async save(room: Room): Promise<Room> {
