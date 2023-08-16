@@ -16,5 +16,5 @@ export const userdb = JSON.parse(
     })
   );
 
-const DEFAULT_PORT:number = 3000;
+const DEFAULT_PORT:number = 8080;
 export const appConfig: AppConfig = {port: process.env.PORT ?? DEFAULT_PORT};
