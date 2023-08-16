@@ -1,10 +1,27 @@
+import { ICrudInterface } from "../dao/crud.interface";
 import roomDao from "../dao/room.dao";
 import Room from "../models/room.model";
 
-class RoomService {
+class RoomService implements ICrudInterface{
 
     constructor(){
         
+    }
+
+    async findById(id: number) {
+      try {
+        return await roomDao.findById(id);
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to get Room with id : "+id);
+      }
+    }
+
+    update(any: any) {
+      throw new Error("Method not implemented.");
+    }
+    delete(any: any) {
+      throw new Error("Method not implemented.");
     }
 
     async findAll(): Promise<Room[]> {
