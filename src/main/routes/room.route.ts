@@ -1,15 +1,16 @@
 import { Router } from "express";
-import { roomWorks } from "../controllers/room.controller";
+import { RoomController } from "../controllers/room.controller";
 
 class RoomRoutes {
   router = Router();
+  roomController = new RoomController();
 
   constructor() {
     this.intializeRoutes();
   }
 
   intializeRoutes() {
-    this.router.get("/", roomWorks);
+    this.router.get("/", this.roomController.findAll);
   }
 }
 

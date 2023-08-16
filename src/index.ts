@@ -6,7 +6,7 @@ import Database from "./config/db";
 export default class Server {
   constructor(app: Application) {
     this.config(app);
-    // this.syncDatabase();
+    this.syncDatabase();
     new Routes(app);
   }
 
