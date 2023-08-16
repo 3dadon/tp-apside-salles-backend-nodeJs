@@ -19,6 +19,20 @@ export class RoomController {
     }
 
   }
+
+  async save(req: Request, res: Response) {
+    try {
+      const roomSaved = await roomService.save(req.body);
+
+      res.status(200).send(roomSaved);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({
+        message: "Some error occurred while creating room."
+      });
+    }
+
+  }
 }
 
 

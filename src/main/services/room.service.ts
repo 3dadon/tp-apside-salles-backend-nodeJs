@@ -16,6 +16,15 @@ class RoomService {
           throw new Error("Failed to retrieve rooms!");
         }
     }
+
+    async save(room: Room): Promise<Room> {
+      try {
+        return await roomDao.save(room);
+      } catch (error) {
+        console.log(error);
+        throw new Error("Failed to create room !");
+      }
+    }
 }
 
 export default new RoomService();
