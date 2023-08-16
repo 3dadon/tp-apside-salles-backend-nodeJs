@@ -11,8 +11,9 @@ class RoomRoutes {
 
   intializeRoutes() {
     this.router.get("/", this.roomController.findAll);
-    this.router.post("/create", this.roomController.save);
     this.router.get("/:id", this.roomController.findById);
+    this.router.post("/create", this.roomController.save);
+    this.router.put("/update/:id", this.roomController.update);
   }
 }
 

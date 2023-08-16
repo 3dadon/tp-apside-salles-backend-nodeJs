@@ -11,8 +11,16 @@ class RoomDao implements ICrudInterface {
       }
     }
 
-    async update(any: any) {
-      throw new Error("Method not implemented.");
+    async update(room: Room) {
+      try {
+        return await Room.update(
+          room,
+          {where : { id: room.id }}
+        );
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to update Room with id : "+room.id);
+      }   
     }
 
     async delete(any: any) {

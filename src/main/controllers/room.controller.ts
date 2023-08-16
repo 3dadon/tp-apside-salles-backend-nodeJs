@@ -52,15 +52,22 @@ export class RoomController {
       });
     }
   }
-}
 
+  async update(req: Request, res: Response) {
+    try {
+      let room = req.body;
+      room.id = parseInt(req.params.id);
+      const result = await roomService.update(room);
 
-export function initRoomCtrl (server: Application) {
-    server.get("/rooms", (req, res) => {
-        res.end('GET /rooms');
-    });
-}
-
-export function roomWorks(req: Request, res: Response): Response {
-  return res.json({ message: "room works !" });
+      if(result===1) {
+        res.status(200).send({"message":"update de la salle "+room.id+"OK"});
+      } else {
+        res.status(404).send({"errorMessage":"Impossible d\'updater la salle d\'id "+room.id});
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({"errorMessage":"Failed to update Room with id : "+req.params.id});
+      throw new Error("Failed to update Room with id : "+req.params.id);
+    }   
+  }
 }

@@ -4,23 +4,27 @@ import Room from "../models/room.model";
 
 class RoomService implements ICrudInterface{
 
-    constructor(){
-        
-    }
-
-    async findById(id: number) {
+    async findById(roomId: number) {
       try {
-        return await roomDao.findById(id);
+        return await roomDao.findById(roomId);
       } catch (err) {
         console.log(err);
-        throw new Error("Failed to get Room with id : "+id);
+        throw new Error("Failed to get Room with id : "+roomId);
       }
     }
 
-    update(any: any) {
-      throw new Error("Method not implemented.");
+    async update(room: Room) {
+      try {
+        const updatedRows = await roomDao.update(room);
+        return updatedRows[0]; //le premier élément du tableau de résultats renvoyé par Sequelize représente le nombre de lignes updatés
+      } catch (err) {
+        console.log(err);
+        throw new Error("Failed to get Room with id : "+room.id);
+      }   
     }
-    delete(any: any) {
+
+
+    async delete(any: any) {
       throw new Error("Method not implemented.");
     }
 
