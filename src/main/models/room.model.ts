@@ -3,6 +3,7 @@ import { Model, Table, Column, DataType } from "sequelize-typescript";
 
 @Table({
     tableName: "t_room",
+    timestamps: false
   })
 export default class Room extends Model {
 

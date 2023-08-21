@@ -11,7 +11,8 @@
     "dev:old": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
-    "start": "sudo tsc && sudo npm run dev"
+    "start": "tsc && npm run dev",
+    "start:mac": "sudo tsc && sudo npm run dev"
   },
   "repository": {
     "type": "git",

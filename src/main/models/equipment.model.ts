@@ -1,9 +1,21 @@
-export interface IEquipment {
-    name: string;
-    iconName: string;
-    isPresent: boolean;
-}
+import { Column, DataType, Model, Table } from "sequelize-typescript";
 
-export class Equipment implements IEquipment {
-    constructor(public name: string, public iconName: string, public isPresent: boolean) {}
+@Table({
+    tableName: "t_equipment",
+    timestamps: false
+  })
+export class Equipment extends Model {
+    @Column({
+        type: DataType.STRING,
+        field: "name",
+        allowNull: false
+    })
+    name?: string;
+
+    @Column({
+        type: DataType.STRING,
+        field: "iconName",
+        allowNull: false
+    })
+    iconName?: string;
 }

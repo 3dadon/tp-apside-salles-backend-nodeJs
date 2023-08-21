@@ -1,4 +1,3 @@
-import { Application } from "express";
 import { Request, Response } from "express";
 import roomService from "../services/room.service";
 
