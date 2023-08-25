@@ -1,5 +1,7 @@
 import { Model, Table, Column, DataType } from "sequelize-typescript";
-
+import { Equipment } from "./equipment.model";
+import { RoomEquipment } from "./room-equipment.model";
+import { BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin } from "sequelize";
 
 @Table({
     tableName: "t_room",
@@ -19,12 +21,6 @@ export default class Room extends Model {
     })
     accessibility?: boolean;
 
-    // @Column({
-    //     type: DataType.ARRAY,
-    //     field: "equipments"
-    // })
-    // equipments?: Equipment[];
-
     @Column({
         type: DataType.STRING,
         field: "address"
@@ -36,4 +32,12 @@ export default class Room extends Model {
         field: "telephone"
     })
     telephone?: string;
+
+    readonly equipments!: Equipment[];
+
+    declare addEquipments: BelongsToManyAddAssociationsMixin<Room, number>;
+
+    // addEquipments(equipments: Equipment[]) {
+        
+    // }
 }

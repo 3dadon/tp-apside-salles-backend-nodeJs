@@ -1,10 +1,13 @@
+import { Equipment } from "../models/equipment.model";
 import Room from "../models/room.model";
 import { ICrudInterface } from "./crud.interface";
 
 class RoomDao implements ICrudInterface {
     async findById(id: number) {
       try {
-        return await Room.findByPk(id);
+        return await Room.findByPk(id, {
+          include: [{model: Equipment, as:'equipments'}]
+        });
       } catch (err) {
         console.log(err);
         throw new Error("Failed to get Room with id : "+id);
@@ -49,7 +52,9 @@ class RoomDao implements ICrudInterface {
     async findAll(): Promise<Room[]> {
         try {
           console.log('RoomDao find all');
-          return await Room.findAll();
+          return await Room.findAll({
+            include: [{model: Equipment, as:'equipments'}]
+          });
         } catch (error) {
           console.log('problème retrait données dao : '+error);
           throw new Error("Failed to retrieve rooms!");

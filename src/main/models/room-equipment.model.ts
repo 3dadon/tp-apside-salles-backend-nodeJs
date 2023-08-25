@@ -7,20 +7,16 @@ import Room from "./room.model";
     timestamps: false
   })
 export class RoomEquipment extends Model {
-    @Column({
-        type: DataType.NUMBER,
-        field: "equipmentId",
-        allowNull: false
-    })
-    equipmentId?: number;
 
     @Column({
         type: DataType.NUMBER,
-        field: "roomId",
-        allowNull: false
+        field: "EquipmentId"
     })
-    roomId?: number;
+    EquipmentId!: number; //EquipmentId : appelation de variable très moche mais pas eu le choix car j'avais des erreurs Sequelize avec "equipmentId"
+
+    @Column({
+        type: DataType.NUMBER,
+        field: "room_id"
+    })
+    room_id!: number;
 }
-
-Equipment.belongsToMany(Room, {through:RoomEquipment});
-Room.belongsToMany(Equipment, {through:RoomEquipment});

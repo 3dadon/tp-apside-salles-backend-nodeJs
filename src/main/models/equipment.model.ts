@@ -14,8 +14,10 @@ export class Equipment extends Model {
 
     @Column({
         type: DataType.STRING,
-        field: "iconName",
+        field: "iconname",
         allowNull: false
     })
     iconName?: string;
+
+    readonly isPresent!: boolean;
 }

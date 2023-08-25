@@ -1,6 +1,10 @@
 create table t_room_equipment (
-    t_room_id serial,
-	CONSTRAINT fk_t_room foreign key(t_room_id) references t_room(id) ,
-    t_equipment_id serial,
-	CONSTRAINT fk_t_equipment foreign key(t_equipment_id) references t_equipment(id)
+    id serial not null primary key, 
+	room_id serial not null,
+	CONSTRAINT fk_t_room foreign key(room_id) references t_room(id) ,
+    "EquipmentId" serial not null,
+	CONSTRAINT fk_t_equipment foreign key("EquipmentId") references t_equipment(id)
 );
+
+insert into t_room_equipment (id, room_id, EquipmentId) values (1, 2, 999990);
+insert into t_room_equipment (id, room_id, EquipmentId) values (1, 3, 999990);
