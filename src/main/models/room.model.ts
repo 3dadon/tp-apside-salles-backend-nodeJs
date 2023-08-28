@@ -36,8 +36,4 @@ export default class Room extends Model {
     readonly equipments!: Equipment[];
 
     declare addEquipments: BelongsToManyAddAssociationsMixin<Room, number>;
-
-    // addEquipments(equipments: Equipment[]) {
-        
-    // }
 }
